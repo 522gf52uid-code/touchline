@@ -1,0 +1,17 @@
+{
+  "name": "টাচলাইন – DLS ১ভি১ টুর্নামেন্ট",
+  "short_name": "টাচলাইন",
+  "description": "DLS ১ভি১ টুর্নামেন্ট ম্যানেজ করার অ্যাপ",
+  "lang": "bn",
+  "start_url": "/touchline/app.html",
+  "scope": "/touchline/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#16a34a",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
