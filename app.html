@@ -290,6 +290,14 @@ case 'wok':case 'wno':{AD();const r=S.wd.find(x=>x.id===id);if(!r||r.st!=='p')re
 case 'give':{AD();const p=nd(val('gu').trim()),amt=+val('ga'),t=val('gt'),u=S.users.find(x=>x.phone===p);if(!u||!(amt>0)||amt>100000)return toast('\u0987\u0989\u099c\u09be\u09b0 \u0993 \u09b8\u09a0\u09bf\u0995 \u09aa\u09b0\u09bf\u09ae\u09be\u09a3 \u09a6\u09bf\u09a8');await updateDoc(doc(db,'users',u.uid),{[t]:increment(amt)});toast(tk(amt)+' \u09af\u09cb\u0997 \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
 case 'dosave':{AD();const g=i=>val(i).trim(),b=g('cb').split(/\n/).map(x=>x.trim()).filter(Boolean);const c={notice:g('cn'),banners:b.length?b:S.cfg.banners,wa:g('cw'),tg:g('ct'),tgl:g('cg'),yt:g('cy'),tt:g('ck'),apk:g('ca')};await setDoc(doc(db,'settings','app'),c);toast('\u09b8\u09c7\u09ad \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
 }}
+</script><script>
+if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) {
+  const hide = () => document.querySelectorAll('button,a').forEach(b => {
+    if (b.textContent.includes('অ্যাপ ডাউনলোড করুন')) b.style.display = 'none';
+  });
+  hide();
+  new MutationObserver(hide).observe(document.body, {childList: true, subtree: true});
+}
 </script>
 </body>
 </html>
