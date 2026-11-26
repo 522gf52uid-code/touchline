@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="dark">
+<head>
+<meta charset="utf-8"><link rel="manifest" href="manifest.json">
+<script>
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>টাচলাইন – DLS ১ভি১ টুর্নামেন্ট</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700;800&family=Hind+Siliguri:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f4f4f2;--card:#fff;--tx:#111;--mu:#666;--ln:#cfcfcf;--pitch:#111;--on:#fff;--gold:#111;--red:#c92a3a;--ok:#13794f;--sl:rgba(0,0,0,.04);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b0b;--card:#171717;--tx:#f2f2f2;--mu:#9a9a9a;--ln:#2e2e2e;--pitch:#f2f2f2;--on:#0b0b0b;--gold:#f2f2f2;--red:#ff6b78;--ok:#4fd39a;--sl:rgba(255,255,255,.03)}}
+:root[data-theme="dark"]{--bg:#0b0b0b;--card:#171717;--tx:#f2f2f2;--mu:#9a9a9a;--ln:#2e2e2e;--pitch:#f2f2f2;--on:#0b0b0b;--gold:#f2f2f2;--red:#ff6b78;--ok:#4fd39a;--sl:rgba(255,255,255,.03)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) repeating-linear-gradient(90deg,transparent 0 44px,var(--sl) 44px 88px);color:var(--tx);font:500 16px/1.5 "Hind Siliguri",system-ui,sans-serif;min-height:100vh}
+#app{max-width:480px;margin:0 auto;padding:14px 16px 96px}
+h1,h2,h3,.hd{font-family:"Anek Bangla","Hind Siliguri",sans-serif;font-weight:800;margin:0}
+button,input,select{font:inherit;color:inherit}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{display:flex;align-items:center;gap:8px;flex:1;cursor:pointer;user-select:none}
+.logo svg{width:30px;height:30px}
+.logo b{font:800 22px "Anek Bangla",sans-serif;letter-spacing:-.3px}
+.chip{border:1.5px solid var(--ln);background:var(--card);border-radius:10px;padding:2px 10px;line-height:1.25;text-align:center}
+.chip small{display:block;color:var(--mu);font-size:11px}.chip b{font:800 15px "Anek Bangla",sans-serif}
+.w b{color:var(--ok)}.d b{color:var(--gold)}
+.hero{background:var(--pitch);color:var(--on);border-radius:18px;padding:20px 18px;position:relative;overflow:hidden;min-height:132px}
+.hero::after{content:"";position:absolute;right:-34px;top:-34px;width:130px;height:130px;border:3px solid currentColor;border-radius:50%;opacity:.25}
+.hero::before{content:"";position:absolute;right:30px;top:-34px;height:130px;border-left:3px solid currentColor;opacity:.25}
+.hero h2{font-size:24px;line-height:1.25;max-width:78%}.hero p{margin:8px 0 0;max-width:80%;opacity:.9}
+.cat{display:flex;align-items:center;gap:14px;width:100%;margin-top:16px;text-align:left;background:var(--card);border:1.5px solid var(--ln);border-radius:16px;padding:14px;cursor:pointer}
+.cat .ball{font-size:30px;width:54px;height:54px;border-radius:50%;background:var(--bg);display:grid;place-items:center;border:1.5px solid var(--ln)}
+.cat h3{font-size:18px}.cat span{color:var(--mu);font-size:14px}.cat i{margin-left:auto;font-style:normal;color:var(--pitch);font-size:22px}
+.pg{display:flex;align-items:center;gap:10px;margin:2px 0 6px}
+.bk{border:1.5px solid var(--ln);background:var(--card);border-radius:10px;width:38px;height:38px;cursor:pointer}
+.tk{display:flex;background:var(--card);border:1.5px solid var(--ln);border-radius:14px;margin:16px 0;position:relative}
+.tk::before,.tk::after{content:"";position:absolute;left:96px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:1.5px solid var(--ln)}
+.tk::before{top:-10px;clip-path:inset(50% 0 0 0)}.tk::after{bottom:-10px;clip-path:inset(0 0 50% 0)}
+.stub{width:112px;padding:14px 8px;border-right:2px dashed var(--ln);text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.stub small{color:var(--mu);font-size:13px}.stub .tm{font:800 26px/1 "Anek Bangla",sans-serif}
+.stub .cdn{margin-top:8px;font:600 12px/1.2 ui-monospace,Menlo,monospace;color:var(--red)}
+.main{flex:1;padding:12px 14px;min-width:0}
+.mon{display:flex;gap:18px}.mon div small{display:block;color:var(--mu);font-size:12px}.mon b{font:800 20px "Anek Bangla",sans-serif}.mon .pz b{color:var(--gold)}
+.sl{display:flex;align-items:center;gap:8px;margin:10px 0}
+.sl i{width:26px;height:26px;border-radius:50%;border:2px dashed var(--ln);display:grid;place-items:center;font:700 12px "Anek Bangla",sans-serif;font-style:normal;color:var(--mu)}
+.sl i.f{background:var(--pitch);border:2px solid var(--pitch);color:var(--on)}
+.sl span{color:var(--mu);font-size:13px;margin-left:4px}
+.btn{display:block;width:100%;border:0;border-radius:11px;padding:10px;font:700 16px "Anek Bangla",sans-serif;cursor:pointer;background:var(--card);border:1.5px solid var(--ln)}
+.btn.pri{background:var(--pitch);color:var(--on);border-color:var(--pitch)}.btn.off{color:var(--mu);cursor:default}
+.btn.red{color:var(--red);border-color:var(--red);width:auto;padding:4px 12px;font-size:14px}.btn.sm{width:auto;padding:5px 14px;font-size:14px}
+.btn:focus-visible,input:focus-visible,.cat:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.joined{border:1.5px solid var(--ok);border-radius:11px;padding:8px;text-align:center;color:var(--ok);font-weight:600;font-size:14px}
+.code{margin-top:4px;color:var(--tx);font:800 20px "Anek Bangla",sans-serif;letter-spacing:2px}.code small{letter-spacing:0;font:500 12px "Hind Siliguri";color:var(--mu)}
+.cp{background:none;border:0;cursor:pointer;font-size:16px}
+.box{background:var(--card);border:1.5px solid var(--ln);border-radius:14px;padding:14px;margin:12px 0}
+.stats{display:flex;justify-content:space-around;text-align:center}.stats b{display:block;font:800 26px "Anek Bangla",sans-serif}.stats span{color:var(--mu);font-size:13px}
+.fl{display:flex;gap:8px;overflow-x:auto;margin:12px 0}.fl button{white-space:nowrap;border:1.5px solid var(--ln);background:var(--card);border-radius:20px;padding:4px 14px;cursor:pointer}.fl button.on{background:var(--pitch);color:var(--on);border-color:var(--pitch)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bg{font-size:13px;font-weight:600;border-radius:8px;padding:1px 10px;border:1.5px solid var(--ln)}.bg.win,.bg.ok{color:var(--ok);border-color:var(--ok)}.bg.loss,.bg.no{color:var(--red);border-color:var(--red)}.bg.run,.bg.p{color:var(--gold);border-color:var(--gold)}
+.bal{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bal .box{margin:0}.bal small{color:var(--mu)}.bal b{display:block;font:800 30px "Anek Bangla",sans-serif}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.mu{color:var(--mu);font-size:14px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1.5px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav div{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+nav button{background:none;border:0;padding:8px 0 6px;color:var(--mu);cursor:pointer;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+nav button span{font-size:20px;line-height:1}nav button.on{color:var(--pitch);font-weight:600}
+nav button.on::before{content:"";position:absolute;top:-1.5px;left:30%;right:30%;height:3px;background:var(--pitch);border-radius:0 0 3px 3px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet{background:var(--bg);width:100%;max-width:480px;max-height:90vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.sheet h3{font-size:20px;margin-bottom:4px}
+label{display:block;margin:12px 0 4px;color:var(--mu);font-size:14px}
+input,select{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--ln);background:var(--card)}
+.rules{border:1.5px solid var(--gold);border-radius:12px;padding:10px 12px 10px 30px;margin:14px 0;font-size:14px}.rules li{margin:5px 0}
+#toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:20px;z-index:30;font-size:14px;display:none}
+.adm{border-color:var(--red)}.pl{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid var(--ln)}
+.ir{display:flex;gap:8px}.ir input{flex:1}
+@media (prefers-reduced-motion:no-preference){.btn,.cat{transition:transform .12s}.btn:active,.cat:active{transform:scale(.98)}}
+:root[data-theme="dark"]{--bg:#000;--card:#0e0e0e;--ln:#2a2a2a}
+.hero::before{display:none}
+.hero::after{content:"";position:absolute;right:-10px;top:50%;width:108px;height:108px;border:0;border-radius:0;opacity:1;transform:translateY(-50%) rotate(-14deg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CclipPath id='c'%3E%3Ccircle cx='50' cy='50' r='46'/%3E%3C/clipPath%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='white' stroke='black' stroke-width='3'/%3E%3Cg clip-path='url(%23c)' fill='black'%3E%3Cpolygon points='50,33 66.2,44.8 60,64 40,64 33.8,44.8'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(50 6)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(91.8 36.4) rotate(72)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(75.9 85.6) rotate(144)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(24.1 85.6) rotate(216)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(8.2 36.4) rotate(288)'/%3E%3C/g%3E%3Cpath d='M50 33V17M66 45L82 40M60 64L70 77M40 64L30 77M34 45L18 40' stroke='black' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.hero h2,.hero p{max-width:62%}
+.logo svg{display:none}
+.logo::before{content:"";width:32px;height:32px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CclipPath id='c'%3E%3Ccircle cx='50' cy='50' r='46'/%3E%3C/clipPath%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='white' stroke='black' stroke-width='3'/%3E%3Cg clip-path='url(%23c)' fill='black'%3E%3Cpolygon points='50,33 66.2,44.8 60,64 40,64 33.8,44.8'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(50 6)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(91.8 36.4) rotate(72)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(75.9 85.6) rotate(144)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(24.1 85.6) rotate(216)'/%3E%3Cpolygon points='0,-11 10.5,-3.4 6.5,8.9 -6.5,8.9 -10.5,-3.4' transform='translate(8.2 36.4) rotate(288)'/%3E%3C/g%3E%3Cpath d='M50 33V17M66 45L82 40M60 64L70 77M40 64L30 77M34 45L18 40' stroke='black' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.pmg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pmc{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px;border:1.5px solid var(--ln);border-radius:12px;background:var(--card);cursor:pointer;font:600 15px Anek Bangla,sans-serif}.pmc.sel{border-color:var(--pitch);box-shadow:inset 0 0 0 1px var(--pitch)}.lg{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--pitch);display:grid;place-items:center;font:800 14px Anek Bangla,sans-serif;font-style:normal}.chips{display:flex;gap:8px;margin:8px 0}.chips button{flex:1;border:1.5px solid var(--ln);background:var(--card);border-radius:10px;padding:8px 0;cursor:pointer;font:700 14px Anek Bangla,sans-serif}.ban{border:1.5px solid var(--red);border-radius:12px;padding:10px 12px;margin:12px 0}.rules2{border:1.5px solid var(--ln);border-radius:12px;padding:10px 12px 10px 28px;margin:14px 0;font-size:14px}.rules2 li{margin:4px 0}
+.notice{border:1.5px solid var(--gold);border-radius:12px;padding:8px 12px;margin:0 0 12px;font-size:14px}.ln{display:block;margin-top:8px;color:var(--tx);font-weight:600;text-decoration:underline}textarea{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--ln);background:var(--card);font:inherit;color:inherit}.dlb{position:fixed;left:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:4;border:0;border-radius:24px;padding:10px 18px;background:var(--pitch);color:var(--on);font:700 15px Anek Bangla,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+:root[data-theme="dark"]{--bg:#06281c;--card:#0c3a29;--tx:#f6f8ef;--mu:#a8c5b4;--ln:#216149;--pitch:#ffd23f;--on:#06281c;--gold:#ffd23f;--ok:#6ee7a8;--red:#ff7a85;--sl:rgba(255,255,255,.045)}
+.pmc[data-v="b"] .lg{background:#e2136e;color:#fff;border-color:#e2136e}.pmc[data-v="n"] .lg{background:#f6821f;color:#fff;border-color:#f6821f}
+.hero{box-shadow:inset 0 -6px 0 rgba(6,40,28,.18)}
+:root[data-theme="dark"]{--bg:#060720;--card:#0c0f35;--tx:#f2f4ff;--mu:#9aa3d6;--ln:#2d3290;--pitch:#a78bfa;--on:#fff;--gold:#ffc83d;--ok:#34e8a0;--red:#ff5d7a;--sl:rgba(120,110,255,.05)}
+body{background:radial-gradient(circle at 85% 0,rgba(124,58,237,.35),transparent 45%),radial-gradient(circle at 0 100%,rgba(37,99,235,.3),transparent 45%),var(--bg)}
+.hero{background:linear-gradient(120deg,#6d28d9,#2563eb 70%,#06b6d4);box-shadow:0 0 28px rgba(99,102,241,.4)}
+.btn.pri,.dlb{background:linear-gradient(90deg,#9333ea,#3b82f6 60%,#22d3ee);border-color:transparent;color:#fff}
+.fl button.on{background:linear-gradient(90deg,#9333ea,#3b82f6);border-color:transparent;color:#fff}
+.tk,.box,.cat,.chip,.pmc{box-shadow:0 0 0 1px rgba(139,92,246,.16),0 6px 18px rgba(40,30,160,.25)}
+nav{background:#080a2a;border-top-color:#343aa8}
+nav button.on::before{background:linear-gradient(90deg,#9333ea,#22d3ee)}
+.logo b{background:linear-gradient(90deg,#c4b5fd,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="sh"></div>
+<div id="toast"></div>
+<script>
+const K='touchline_demo_v3',PIN='1234';
+const bn=s=>String(s).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+const tk=n=>'৳'+bn(n);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=s=>document.querySelector(s);
+const RULES=['ম্যাচ শেষে স্কোরের স্ক্রিনশট নিয়ে সাপোর্টে পাঠান।','ম্যাচ শুরুর ৫ মিনিট আগে রুম কোড দেওয়া হবে।','কোড আগে পেলেও ম্যাচ নির্ধারিত সময়েই শুরু করতে হবে।','নির্ধারিত সময়ের ৫ মিনিটের মধ্যে জয়েন না করলে প্রতিপক্ষ জয়ী ধরা হবে।','কোড পাওয়া থেকে ম্যাচ শেষ পর্যন্ত স্ক্রিন রেকর্ড করুন এবং একবার ফোনের সময় দেখান।','নেটওয়ার্ক সমস্যায় বের হয়ে গেলে রিফান্ড নেই, প্রতিপক্ষ জয়ী ধরা হবে।','যেকোনো সমস্যায় সাপোর্টে যোগাযোগ করুন।'];
+const BN=['২৪ ঘণ্টা সাপোর্ট: টেলিগ্রাম ও হোয়াটসঅ্যাপে','গ্রুপে থাকুন, নোটিশ বোর্ড দেখুন','বিকাশ বা নগদে ব্যালেন্স যোগ করুন'];
+let S,lm='l',tab='m',view='',flt='all',adm=false,taps=0,txo=false,bi=0;
+function seed(){const n=Date.now(),m=6e4,P=(a,b)=>({n:a,r:b,mine:0});return{users:[{name:'প্লেয়ার',phone:'01700000000',pw:'1234',w:75,d:25}],mp:'',cfg:{notice:'বিকাশ বা নগদের নম্বরে ডিপোজিট করতে পারেন',wa:'01786139482',tg:'01786139482',tgl:'',yt:'',tt:'',apk:'',banners:['২৪ ঘণ্টা সাপোর্ট: টেলিগ্রাম ও হোয়াটসঅ্যাপে','গ্রুপে থাকুন, নোটিশ বোর্ড দেখুন','বাংলাদেশের DLS টুর্নামেন্ট']},in:0,nid:5,matches:[
+{id:1,t:n-12*m,entry:20,prize:35,players:[P('DEMO A',75),P('DEMO B',61)],code:'',st:'open'},
+{id:2,t:n+25*m,entry:20,prize:35,players:[P('DEMO C',80)],code:'',st:'open'},
+{id:3,t:n+55*m,entry:35,prize:60,players:[],code:'',st:'open'},
+{id:4,t:n+4*36e5,entry:50,prize:85,players:[],code:'',st:'open'}],hist:[],dep:[],wd:[],tx:[]}}
+function load(){return{users:[],me:null,matches:[],hist:[],tx:[],dep:[],wd:[],codes:{},cfg:seed().cfg,in:0,nid:1,mp:''}}
+function save(){}
+function lbl(t){const d=new Date(t),h=d.getHours(),m=d.getMinutes();return{p:h<4?'রাত':h<6?'ভোর':h<12?'সকাল':h<16?'দুপুর':h<18?'বিকাল':h<20?'সন্ধ্যা':'রাত',hm:bn((h%12||12)+':'+String(m).padStart(2,'0'))}}
+function cd(t){const d=t-Date.now();if(d<=0)return null;const s=Math.floor(d/1e3);return[Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(x=>String(x).padStart(2,'0')).join(':')}
+function toast(m){const e=$('#toast');e.textContent=m;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2200)}
+function sheet(h){$('#sh').innerHTML=h?`<div class="ov" data-a="close"><div class="sheet">${h}</div></div>`:''}
+function ticket(m){const l=lbl(m.t),c=cd(m.t),full=m.players.length>=2,mine=m.players.some(p=>p.u===S.me.uid);let a;
+if(m.st==='done')a='<div class="btn off">ম্যাচ শেষ</div>';
+else if(mine)a=`<div class="joined">✓ জয়েন করা হয়েছে<div class="code">${m.code&&Date.now()>=m.t-3e5?esc(m.code)+' <button class="cp" data-a="copy" data-v="'+esc(m.code)+'" aria-label="কপি">📋</button>':'<small>শুরুর ৫ মিনিট আগে কোড আসবে</small>'}</div></div>`;
+else if(!c)a='<div class="btn off">ম্যাচ শুরু হয়ে গেছে</div>';
+else if(full)a='<div class="btn off">স্লট ফুল, অন্য ম্যাচে যান</div>';
+else a=`<button class="btn pri" data-a="join" data-id="${m.id}">জয়েন করুন</button>`;
+return`<div class="tk"><div class="stub"><small>${l.p}</small><div class="tm">${l.hm}</div><div class="cdn" data-t="${m.t}" data-l="${c?1:0}">${c||'শুরু হয়েছে'}</div></div><div class="main"><div class="mon"><div><small>এন্ট্রি ফি</small><b>${tk(m.entry)}</b></div><div class="pz"><div><small>প্রাইজ</small><b>${tk(m.prize)}</b></div></div></div><div class="sl"><i class="${m.players[0]?'f':''}">১</i><i class="${m.players[1]?'f':''}">২</i><span>${bn(m.players.length)}/২ স্লট</span></div>${a}</div></div>`}
+function head(){return`<div class="top"><div class="logo" data-a="logo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="2" y="5" width="28" height="22" rx="3"/><path d="M16 5v22"/><circle cx="16" cy="16" r="5"/></svg><b>টাচলাইন</b></div><div class="chip w"><small>জেতা</small><b>${tk(S.me.w)}</b></div><div class="chip d"><small>জমা</small><b>${tk(S.me.d)}</b></div></div>`}
+function pMatch(){if(view==='list'){const ms=S.matches.filter(m=>m.st!=='done').sort((a,b)=>a.t-b.t);return`<div class="pg"><button class="bk" data-a="back" aria-label="পেছনে">←</button><h2>DLS ১ভি১ ম্যাচ</h2></div>${ms.map(ticket).join('')||'<p class="mu">এখন কোনো ম্যাচ নেই। একটু পরে আবার দেখুন।</p>'}`}
+return`<div class="notice">🔔 ${esc(S.cfg.notice)}</div><div class="hero"><h2 id="bn">${esc(S.cfg.banners[bi%S.cfg.banners.length])}</h2><p>ম্যাচ বেছে নিন, জয়েন করুন, জিতে প্রাইজ তুলে নিন।</p></div><button class="cat" data-a="list"><div class="ball">⚽</div><div><h3>DLS ১ভি১ ম্যাচ</h3><span>এক বনাম এক, ক্যাশ প্রাইজ</span></div><i>›</i></button><button class="dlb" data-a="dl">⬇ অ্যাপ ডাউনলোড করুন</button>`}
+function pHist(){const h=S.hist.filter(x=>x.u===S.me.phone),w=h.filter(x=>x.res==='win').length,l=h.filter(x=>x.res==='loss').length,L={all:'সব',win:'জয়',loss:'পরাজয়',run:'চলমান'};const f=h.filter(x=>flt==='all'||x.res===flt).slice().reverse();
+return`<h2>ম্যাচ হিস্টোরি</h2><div class="box stats"><div><b>${bn(h.length)}</b><span>মোট ম্যাচ</span></div><div><b>${bn(w)}</b><span>জয়</span></div><div><b>${bn(l)}</b><span>পরাজয়</span></div></div><div class="fl">${Object.keys(L).map(k=>`<button class="${flt===k?'on':''}" data-a="flt" data-v="${k}">${L[k]}</button>`).join('')}</div>${f.map(x=>{const q=lbl(x.t);return`<div class="box"><div class="row"><b class="hd">${q.p} ${q.hm}</b><span class="bg ${x.res}">${L[x.res]}</span></div><div class="row mu"><span>ম্যাচ #${bn(x.mid)}</span><span>এন্ট্রি ${tk(x.entry)}</span></div></div>`}).join('')||'<p class="mu">কোনো ম্যাচ পাওয়া যায়নি। প্রথম ম্যাচে জয়েন করুন।</p>'}`}
+function reqs(a){return a.slice().reverse().map(r=>`<div class="box row"><div><b class="hd">${tk(r.amt)}</b> <span class="mu">${esc(r.mth||'উইথড্র')}</span><div class="mu">${r.trx?'TrxID: '+esc(r.trx):esc(r.no||'')}</div></div><span class="bg ${r.st}">${{p:'অপেক্ষায়',ok:'অ্যাপ্রুভড',no:'বাতিল'}[r.st]}</span></div>`).join('')||'<p class="mu">এখনো কোনো রিকোয়েস্ট নেই।</p>'}
+function pWal(){return`<h2>ওয়ালেট</h2><div class="bal" style="margin-top:12px"><div class="box"><small>জেতা ব্যালেন্স</small><b style="color:var(--ok)">${tk(S.me.w)}</b></div><div class="box"><small>জমা ব্যালেন্স</small><b style="color:var(--gold)">${tk(S.me.d)}</b></div></div><div class="acts"><button class="btn pri" data-a="add">+ টাকা যোগ করুন</button><button class="btn" data-a="wd">উইথড্র</button></div><p class="mu">বিকাশ বা নগদে টাকা পাঠিয়ে ট্রানজেকশন আইডি দিন। অ্যাডমিন যাচাই করলে জমা ব্যালেন্সে যোগ হবে।</p><h3 style="margin:16px 0 8px">যোগ করার রিকোয়েস্ট</h3>${reqs(S.dep.filter(x=>x.u===S.me.phone))}<h3 style="margin:16px 0 8px">উইথড্র রিকোয়েস্ট</h3>${reqs(S.wd.filter(x=>x.u===S.me.phone))}`}
+function pProf(){return`<div class="box" style="text-align:center"><div class="hero" style="min-height:0;padding:16px"><h2 style="max-width:100%" data-a="rename">${esc(S.me.name)} ✎</h2><p style="max-width:100%">${esc(S.me.phone)}</p></div></div><div class="box"><b class="hd">DLS সিজন পাস</b><div class="mu">অর্ডার করতে হোয়াটসঅ্যাপে যোগাযোগ করুন</div>${S.cfg.wa?lk('https://wa.me/'+E(S.cfg.wa),'WhatsApp এ অর্ডার করুন'):''}</div><div class="box"><b class="hd">কমিউনিটি</b><div class="mu">টেলিগ্রাম, ইউটিউব ও টিকটকে আমাদের ফলো করুন</div>${[['Telegram গ্রুপ',S.cfg.tgl],['YouTube',S.cfg.yt],['TikTok',S.cfg.tt]].map(x=>su(x[1])?lk(su(x[1]),x[0]):'').join('')}</div><div class="box"><button class="btn" data-a="tx">লেনদেনের ইতিহাস ${txo?'▴':'▾'}</button>${txo?(S.tx.filter(x=>x.u===S.me.phone).slice().reverse().map(x=>`<div class="row" style="padding:6px 0"><span>${esc(x.d)}</span><b class="hd" style="color:${x.a<0?'var(--red)':'var(--ok)'}">${x.a<0?'−':'+'}${tk(Math.abs(x.a))}</b></div>`).join('')||'<p class="mu">কোনো লেনদেন নেই।</p>'):''}</div><div class="box"><b class="hd">যোগাযোগ</b><div class="mu">সমস্যা বা পরামর্শ জানাতে সাপোর্টে লিখুন</div>${S.cfg.wa?lk('https://wa.me/'+E(S.cfg.wa),'WhatsApp: '+S.cfg.wa):''}${S.cfg.tg?lk('https://t.me/+'+E(S.cfg.tg),'Telegram: '+S.cfg.tg):''}<button class="btn" style="margin-top:12px" data-a="dl">অ্যাপ ডাউনলোড করুন</button></div><button class="btn" data-a="logout">লগআউট</button>`}
+function pAdmM(){const ms=S.matches.slice().sort((a,b)=>b.id-a.id),pd=S.dep.filter(r=>r.st==='p'),pw=S.wd.filter(r=>r.st==='p');
+return`<div class="pg"><button class="bk" data-a="exit" aria-label="বের হন">←</button><h2>অ্যাডমিন প্যানেল</h2></div><div class="box adm"><h3>নতুন ম্যাচ</h3><label>ম্যাচের তারিখ ও সময়</label><input id="nm" type="datetime-local"><div class="ir" style="margin-top:8px"><input id="ne" type="number" placeholder="এন্ট্রি ফি (৳)" inputmode="numeric"><input id="np" type="number" placeholder="প্রাইজ (৳)" inputmode="numeric"></div><p class="mu">রুম কোড আগে বসিয়ে রাখলেও ইউজাররা তা ম্যাচ শুরুর ৫ মিনিট আগে থেকে দেখবে।</p><button class="btn pri" style="margin-top:8px" data-a="mk">ম্যাচ যোগ করুন</button></div>
+<h3 style="margin:14px 0 6px">টাকা যোগের অনুরোধ (${bn(pd.length)})</h3>${pd.map(r=>`<div class="box"><div class="row"><b class="hd">${tk(r.amt)} · ${esc(r.mth)}</b><span class="mu">${esc(r.trx)}</span></div><div class="mu">${esc(r.nm||'')} ${esc(r.u||'')}</div><div class="ir" style="margin-top:8px"><button class="btn pri sm" data-a="dok" data-id="${r.id}">অ্যাপ্রুভ</button><button class="btn red" data-a="dno" data-id="${r.id}">বাতিল</button></div></div>`).join('')||'<p class="mu">কিছু নেই।</p>'}
+<h3 style="margin:14px 0 6px">উইথড্র অনুরোধ (${bn(pw.length)})</h3>${pw.map(r=>`<div class="box"><div class="row"><b class="hd">${tk(r.net||r.amt)} পাঠান</b><span class="mu">${esc(r.mth||'')} ${esc(r.typ||'')} ${esc(r.no)}</span></div><div class="mu">${esc(r.nm||'')} ${esc(r.u||'')}</div><div class="ir" style="margin-top:8px"><button class="btn pri sm" data-a="wok" data-id="${r.id}">পাঠানো হয়েছে</button><button class="btn red" data-a="wno" data-id="${r.id}">বাতিল</button></div></div>`).join('')||'<p class="mu">কিছু নেই।</p>'}
+<h3 style="margin:14px 0 6px">সব ম্যাচ</h3>${ms.map(m=>{const l=lbl(m.t);return`<div class="box"><div class="row"><b class="hd">#${bn(m.id)} ${l.p} ${l.hm}</b><button class="btn red" data-a="del" data-id="${m.id}">ডিলিট</button></div><div class="mu">এন্ট্রি ${tk(m.entry)} · প্রাইজ ${tk(m.prize)} · স্লট ${bn(m.players.length)}/২ ${m.st==='done'?'· শেষ':''}</div><div class="ir" style="margin:8px 0"><input id="c${m.id}" value="${esc(m.code)}" placeholder="রুম কোড"><button class="btn sm" data-a="code" data-id="${m.id}">সেট করুন</button></div>${m.st==='done'?'':m.players.map((p,i)=>`<div class="pl"><span>${esc(p.n)} (রেটিং ${bn(p.r)})${p.mine?' · আপনি':''}</span><button class="btn pri sm" data-a="win" data-id="${m.id}" data-i="${i}">Win</button></div>`).join('')}</div>`}).join('')}`}
+function pLogin(){const r=lm==='r';return`<div class="top"><div class="logo" data-a="logo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="2" y="5" width="28" height="22" rx="3"/><path d="M16 5v22"/><circle cx="16" cy="16" r="5"/></svg><b>টাচলাইন</b></div></div><div class="hero"><h2>${r?'নতুন অ্যাকাউন্ট খুলুন':'লগইন করুন'}</h2><p>${r?'নাম, নম্বর ও পাসওয়ার্ড দিয়ে শুরু করুন।':'ম্যাচে জয়েন করতে আগে লগইন করুন।'}</p></div><div class="fl" style="margin-top:14px"><button class="${r?'':'on'}" data-a="lm" data-v="l">লগইন</button><button class="${r?'on':''}" data-a="lm" data-v="r">রেজিস্ট্রেশন</button></div>${r?'<label>আপনার নাম</label><input id="ln" autocomplete="name">':''}<label>মোবাইল নম্বর</label><input id="lp" autocapitalize="off" placeholder="01XXXXXXXXX" autocomplete="username"><label>পাসওয়ার্ড</label><input id="lw" type="password" autocomplete="${r?'new-password':'current-password'}"><button class="btn pri" style="margin-top:16px" data-a="${r?'doreg':'dologin'}">${r?'অ্যাকাউন্ট খুলুন':'লগইন'}</button>${r?'':'<p class="mu" style="text-align:center">নম্বর ও পাসওয়ার্ড দিয়ে লগইন করুন</p>'}`}
+function render(){const y=window.scrollY;let p;if(adm)p=pAdm();else if(!S.in){$('#app').innerHTML=pLogin();window.scrollTo(0,y);return}else p=head()+({m:pMatch,h:pHist,w:pWal,p:pProf}[tab])();
+const N=[['m','⚽','ম্যাচ'],['h','🕘','হিস্টোরি'],['w','👛','ওয়ালেট'],['p','👤','প্রোফাইল']];
+$('#app').innerHTML=p+(adm?'':`<nav><div>${N.map(n=>`<button class="${tab===n[0]?'on':''}" data-a="tab" data-v="${n[0]}"><span>${n[1]}</span>${n[2]}</button>`).join('')}</div></nav>`);window.scrollTo(0,y)}
+function addTx(d,a,u){S.tx.push({d,a,u:u||S.me.phone})}
+function joinSheet(id){const m=S.matches.find(x=>x.id==id);sheet(`<h3>${lbl(m.t).p} ${lbl(m.t).hm}</h3><div class="mu">এন্ট্রি ${tk(m.entry)} · প্রাইজ ${tk(m.prize)}</div><label>টিম ম্যানেজারের নাম</label><input id="jn" placeholder="আপনার ম্যানেজারের নাম"><label>টিম রেটিং</label><input id="jr" type="number" inputmode="numeric" placeholder="যেমন: ৯১"><ol class="rules"><b class="hd">⚠ নিয়মাবলী</b>${RULES.map(r=>`<li>${r}</li>`).join('')}</ol><button class="btn pri" data-a="dojoin" data-id="${id}">জয়েন করুন</button>`)}
+function moneySheet(w){sheet(w?`<h3>উইথড্র</h3><div class="mu">জেতা ব্যালেন্স: ${tk(S.me.w)}</div><label>পরিমাণ</label><input id="wa" type="number" inputmode="numeric"><label>বিকাশ/নগদ নম্বর</label><input id="wn" inputmode="tel"><button class="btn pri" style="margin-top:14px" data-a="dowd">অনুরোধ পাঠান</button>`:`<h3>টাকা যোগ করুন</h3><div class="mu">আগে নিচের নম্বরে টাকা পাঠান, তারপর ট্রানজেকশন আইডি দিন।</div><div class="box" style="margin:12px 0"><div class="row"><div><small class="mu">বিকাশ (শুধু বিকাশে পাঠান)</small><br><b class="hd">01786139482</b></div><button class="cp" data-a="copy" data-v="01786139482" aria-label="কপি">📋</button></div><div class="row" style="margin-top:10px"><div><small class="mu">নগদ (শুধু নগদে পাঠান)</small><br><b class="hd">01349701784</b></div><button class="cp" data-a="copy" data-v="01349701784" aria-label="কপি">📋</button></div></div><label>মাধ্যম</label><select id="am"><option>বিকাশ</option><option>নগদ</option></select><label>পরিমাণ</label><input id="aa" type="number" inputmode="numeric"><label>ট্রানজেকশন আইডি</label><input id="at"><button class="btn pri" style="margin-top:14px" data-a="doadd">রিকোয়েস্ট পাঠান</button>`)}
+const PAY={b:'01786139482',n:'01349701784'},PN={b:'বিকাশ',n:'নগদ'},WMIN=100,WMAX=500,WDAY=2;
+let pm='b',pt='p';
+const bdh=()=>+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dhaka',hour:'2-digit',hourCycle:'h23'}).format(new Date());
+const wopen=()=>{const h=bdh();return h>=10&&h<23};
+const bdd=t=>new Date(t).toLocaleDateString('en-CA',{timeZone:'Asia/Dhaka'});
+const fee=a=>a<=100?5:10;
+function pmc(){return`<div class='pmg'><button class='pmc sel' data-a='pm' data-v='b'><i class='lg'>bK</i>বিকাশ</button><button class='pmc' data-a='pm' data-v='n'><i class='lg'>নগ</i>নগদ</button></div>`}
+function moneySheet(w){pm='b';pt='p';if(!w)sheet(`<h3>ব্যালেন্স যোগ করুন</h3><div class='mu'>ম্যাচে জয়েন করতে আগে টাকা যোগ করুন।</div><div class='box' style='margin:12px 0;text-align:center'><small class='mu'>বর্তমান জমা ব্যালেন্স</small><div class='hd' style='font-size:30px'>${tk(S.me.d)}</div></div><label>টাকার পরিমাণ (৳১০ থেকে ৳৫০০)</label><input id='aa' type='number' inputmode='numeric' placeholder='৫০'><div class='chips'>${[50,100,200,500].map(x=>`<button data-a='amt' data-v='${x}'>${tk(x)}</button>`).join('')}</div><label>পেমেন্ট মাধ্যম</label>${pmc()}<div class='box' style='margin:12px 0'><div class='row'><div><small class='mu' id='pl'>বিকাশে এই নম্বরে টাকা পাঠান</small><br><b class='hd' id='pn' style='font-size:20px'>${PAY.b}</b></div><button class='cp' data-a='copyn' aria-label='কপি'>📋</button></div></div><label>ট্রানজেকশন আইডি</label><input id='at' placeholder='যেমন: DK26VBNKOM'><button class='btn pri' style='margin-top:14px' data-a='doadd2'>ব্যালেন্স যোগ করুন</button>`);else sheet(`<h3>উইথড্র</h3><div class='mu'>শুধু জেতা ব্যালেন্স থেকে তোলা যাবে।</div>${wopen()?'':`<div class='ban'><b class='hd'>উইথড্র এখন বন্ধ</b><div class='mu'>প্রতিদিন রাত ১১টা থেকে সকাল ১০টা পর্যন্ত (বাংলাদেশ সময়) বন্ধ থাকে।</div></div>`}<div class='bal' style='margin:12px 0'><div class='box'><small>জেতা ব্যালেন্স</small><b style='color:var(--ok)'>${tk(S.me.w)}</b></div><div class='box'><small>জমা ব্যালেন্স</small><b>${tk(S.me.d)}</b></div></div><p class='mu'>জমা ব্যালেন্স দিয়ে ম্যাচে জয়েন করা যাবে, তোলা যাবে না।</p><label>পেমেন্ট মাধ্যম</label>${pmc()}<label>অ্যাকাউন্ট টাইপ</label><div class='pmg'><button class='pmc sel' data-a='pt' data-v='p'>Personal</button><button class='pmc' data-a='pt' data-v='a'>Agent</button></div><label>আপনার নম্বর</label><input id='wn' type='tel' inputmode='tel' placeholder='01XXXXXXXXX'><label>উত্তোলনের পরিমাণ</label><input id='wa' type='number' inputmode='numeric' placeholder='সর্বনিম্ন ${tk(WMIN)}'><ul class='rules2'><li>প্রতিদিন সর্বোচ্চ ${bn(WDAY)} বার উইথড্র করা যাবে।</li><li>একবারে সর্বোচ্চ ${tk(WMAX)} তোলা যাবে।</li><li>অনুরোধের পর ২৪ ঘণ্টার মধ্যে প্রসেস করা হবে।</li><li>${bn(100)} টাকা পর্যন্ত চার্জ ${bn(5)} টাকা, ${bn(101)} টাকা বা বেশিতে ${bn(10)} টাকা।</li><li>সর্বনিম্ন উত্তোলন ${tk(WMIN)}।</li></ul><button class='btn ${wopen()?'pri':'off'}' data-a='dowd2'>${wopen()?'উইথড্র অনুরোধ পাঠান':'বন্ধ • সকাল ১০:০০ টায় চালু হবে'}</button>`)}
+const nd=s=>String(s).replace(/[০-৯]/g,d=>'০১২৩৪৫৬৭৮৯'.indexOf(d));
+const E=n=>'88'+String(n).replace(/\D/g,'');
+const su=u=>/^https?:\/\//i.test(u||'')?esc(u):'';
+const lk=(h,t)=>`<a class='ln' href='${h}' target='_blank' rel='noopener'>${esc(t)}</a>`;
+let at='m',dp=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
+function pUsers(){const U=S.users,j=S.matches.reduce((a,m)=>a+m.players.filter(p=>p.u).length,0);return`<div class='box stats'><div><b>${bn(U.length)}</b><span>মোট ইউজার</span></div><div><b>${bn(j)}</b><span>ম্যাচে জয়েন</span></div><div><b>${tk(U.reduce((a,u)=>a+u.d+u.w,0))}</b><span>মোট ব্যালেন্স</span></div></div><div class='box adm'><h3>ইউজারকে টাকা দিন</h3><label>ইউজার</label><input id='gu' list='ul' inputmode='tel' placeholder='ইউজারের মোবাইল নম্বর লিখুন'><datalist id='ul'>${U.map(u=>`<option value='${esc(u.phone)}'>${esc(u.name)}</option>`).join('')}</datalist><label>পরিমাণ (৳)</label><input id='ga' type='number' inputmode='numeric'><label>কোন ব্যালেন্সে</label><select id='gt'><option value='d'>জমা ব্যালেন্স (শুধু ম্যাচে জয়েন)</option><option value='w'>জেতা ব্যালেন্স (উইথড্র করা যাবে)</option></select><button class='btn pri' style='margin-top:12px' data-a='give'>টাকা যোগ করুন</button><p class='mu'>এই অপশন শুধু অ্যাডমিন প্যানেলে আছে।</p></div><h3 style='margin:14px 0 6px'>সব ইউজার</h3>${U.map(u=>`<div class='box'><div class='row'><b class='hd'>${esc(u.name)}</b><span class='mu'>${esc(u.phone)}</span></div><div class='row mu'><span>জমা ${tk(u.d)}</span><span>জেতা ${tk(u.w)}</span><span>ম্যাচ ${bn(S.matches.filter(m=>m.players.some(p=>p.u===u.uid)).length)}</span></div></div>`).join('')}`}
+function pSet(){const c=S.cfg;return`<div class='box adm'><h3>অ্যাপের সেটিংস</h3><label>নোটিশ (হোম পেজের উপরে)</label><input id='cn' value='${esc(c.notice)}'><label>ব্যানারের লেখা (প্রতি লাইনে একটা)</label><textarea id='cb' rows='3'>${esc(c.banners.join('\n'))}</textarea><label>যোগাযোগ: WhatsApp নম্বর</label><input id='cw' type='tel' value='${esc(c.wa)}'><label>যোগাযোগ: Telegram নম্বর</label><input id='ct' type='tel' value='${esc(c.tg)}'><label>Telegram গ্রুপের লিংক</label><input id='cg' value='${esc(c.tgl)}' placeholder='https://t.me/...'><label>YouTube লিংক</label><input id='cy' value='${esc(c.yt)}' placeholder='https://...'><label>TikTok লিংক</label><input id='ck' value='${esc(c.tt)}' placeholder='https://...'><label>APK ডাউনলোড লিংক</label><input id='ca' value='${esc(c.apk)}' placeholder='https://...'><button class='btn pri' style='margin-top:12px' data-a='dosave'>সেভ করুন</button></div>`}
+function pAdm(){const h=pAdmM(),i=h.indexOf('</div>')+6,tb=`<div class='fl'>${[['m','ম্যাচ'],['u','ইউজার'],['s','সেটিংস']].map(x=>`<button class='${at===x[0]?'on':''}' data-a='atab' data-v='${x[0]}'>${x[1]}</button>`).join('')}</div>`;return h.slice(0,i)+tb+(at==='u'?pUsers():at==='s'?pSet():h.slice(i))}
+function dlSheet(){const a=su(S.cfg.apk);sheet(`<h3>অ্যাপ ডাউনলোড</h3><div class='mu'>ফোনে অ্যাপের মতো রাখতে নিচের ধাপ করুন।</div>${dp?`<button class='btn pri' style='margin-top:12px' data-a='inst'>এখনই ইনস্টল করুন</button>`:''}<ol class='rules2' style='margin-top:14px'><li>Chrome ব্রাউজারে এই পেজটা খুলুন।</li><li>উপরে ডান পাশের তিন ডটের মেনু (⋮) চাপুন।</li><li>“Add to Home screen” বা “Install app” চাপুন।</li><li>“Install” চাপলে হোম স্ক্রিনে অ্যাপের আইকন আসবে।</li></ol>${a?`<a class='btn pri' style='text-align:center;text-decoration:none' href='${a}' target='_blank' rel='noopener'>APK ডাউনলোড করুন</a><p class='mu'>APK ইনস্টলের সময় “অজানা উৎস থেকে ইনস্টল” চালু করতে বলতে পারে।</p>`:''}`)}
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,id=+el.dataset.id,v=el.dataset.v;if(a==='close'&&e.target!==el)return;
+const M=()=>S.matches.find(x=>x.id===id),val=i=>($('#'+i)||{}).value||'';if(window.FB&&FB.act(a,el))return;
+if(a==='close')sheet('');
+else if(a==='tab'){tab=v;view='';render()}
+else if(a==='list'){view='list';render()}
+else if(a==='back'){view='';render()}
+else if(a==='flt'){flt=v;render()}
+else if(a==='tx'){txo=!txo;render()}
+else if(a==='rename')sheet('<h3>নাম পরিবর্তন</h3><input id="rn" value="'+esc(S.me.name)+'"><button class="btn pri" style="margin-top:14px" data-a="dorn">সেভ করুন</button>')
+else if(a==='dorn'){const n=val('rn').trim();if(n){S.me.name=n.slice(0,20);save();sheet('');render()}}
+else if(a==='copy'){try{navigator.clipboard.writeText(v);toast('কপি হয়েছে')}catch(x){toast(v)}}
+else if(a==='logo'){taps++;clearTimeout(window.lt);window.lt=setTimeout(()=>taps=0,1500);if(taps>=5){taps=0;sheet('<h3>অ্যাডমিন পিন</h3><label>পিন লিখুন</label><input id="ap" type="password" inputmode="numeric"><button class="btn pri" style="margin-top:14px" data-a="dopin">খুলুন</button>')}}
+else if(a==='join')joinSheet(id)
+else if(a==='dojoin'){const m=M(),n=val('jn').trim(),r=+val('jr');if(!n||!r)return toast('নাম ও রেটিং দিন');if(S.me.d+S.me.w<m.entry)return toast('ব্যালেন্স কম, আগে টাকা যোগ করুন');if(m.players.length>=2||!cd(m.t))return toast('এই ম্যাচে আর জয়েন করা যাবে না');
+let f=m.entry,x=Math.min(S.me.d,f);S.me.d-=x;f-=x;S.me.w-=f;m.players.push({n,r,u:S.me.phone});S.hist.push({u:S.me.phone,mid:m.id,t:m.t,entry:m.entry,res:'run'});addTx('ম্যাচ #'+bn(m.id)+' এন্ট্রি',-m.entry);save();sheet('');render();toast('জয়েন সম্পন্ন')}
+else if(a==='add')moneySheet(0)
+else if(a==='wd')moneySheet(1)
+else if(a==='doadd'){const amt=+val('aa'),t=val('at').trim();if(amt<=0||!t)return toast('পরিমাণ ও ট্রানজেকশন আইডি দিন');S.dep.push({id:Date.now(),amt,mth:val('am'),trx:t,st:'p'});save();sheet('');render();toast('রিকোয়েস্ট পাঠানো হয়েছে')}
+else if(a==='dowd'){const amt=+val('wa'),no=val('wn').trim();if(amt<=0||!no)return toast('পরিমাণ ও নম্বর দিন');if(amt>S.me.w)return toast('জেতা ব্যালেন্স কম');S.me.w-=amt;S.wd.push({id:Date.now(),amt,no,st:'p'});addTx('উইথড্র অনুরোধ',-amt);save();sheet('');render();toast('অনুরোধ পাঠানো হয়েছে')}
+else if(a==='amt'){$('#aa').value=v}
+else if(a==='pm'){pm=v;document.querySelectorAll('[data-a="pm"]').forEach(b=>b.classList.toggle('sel',b===el));const n=$('#pn');if(n){n.textContent=PAY[v];$('#pl').textContent=PN[v]+'ে এই নম্বরে টাকা পাঠান'}}
+else if(a==='pt'){pt=v;document.querySelectorAll('[data-a="pt"]').forEach(b=>b.classList.toggle('sel',b===el))}
+else if(a==='copyn'){try{navigator.clipboard.writeText(PAY[pm]);toast('কপি হয়েছে')}catch(x){toast(PAY[pm])}}
+else if(a==='doadd2'){const amt=+val('aa'),t=val('at').replace(/\s/g,'').toUpperCase();if(!(amt>=10&&amt<=500))return toast('৳১০ থেকে ৳৫০০ পর্যন্ত যোগ করা যাবে');if(!/^[A-Z0-9]{8,12}$/.test(t))return toast('সঠিক ট্রানজেকশন আইডি দিন (৮-১২ অক্ষর)');if(S.dep.some(x=>String(x.trx).toUpperCase()===t))return toast('এই ট্রানজেকশন আইডি আগেই দেওয়া হয়েছে');S.dep.push({id:Date.now(),u:S.me.phone,nm:S.me.name,amt,mth:PN[pm],trx:t,st:'p'});save();sheet('');render();toast('রিকোয়েস্ট পাঠানো হয়েছে')}
+else if(a==='dowd2'){if(!wopen())return toast('উইথড্র এখন বন্ধ, সকাল ১০টায় চালু হবে');const amt=+val('wa'),no=val('wn').trim(),td=bdd(Date.now());if(!/^01\d{9}$/.test(no))return toast('সঠিক ১১ ডিজিটের নম্বর দিন');if(amt<WMIN)return toast('সর্বনিম্ন উত্তোলন ৳১০০');if(amt>WMAX)return toast('একবারে সর্বোচ্চ ৳৫০০');if(amt>S.me.w)return toast('জেতা ব্যালেন্স কম');if(S.wd.filter(r=>r.u===S.me.phone&&r.at&&r.st!=='no'&&bdd(r.at)===td).length>=WDAY)return toast('আজকের উইথড্র সীমা শেষ');const f=fee(amt);S.me.w-=amt;S.wd.push({id:Date.now(),u:S.me.phone,nm:S.me.name,at:Date.now(),amt,fee:f,net:amt-f,mth:PN[pm],typ:pt==='p'?'Personal':'Agent',no,st:'p'});addTx('উইথড্র অনুরোধ',-amt);save();sheet('');render();toast('অনুরোধ পাঠানো হয়েছে')}
+else if(a==='atab'){at=v;render()}
+else if(a==='dl')dlSheet()
+else if(a==='inst'){if(dp){dp.prompt();dp=null;sheet('')}}
+else if(a==='give'){if(!adm)return;const p=nd(val('gu').trim()),amt=+val('ga'),t=val('gt'),u=S.users.find(x=>x.phone===p);if(!u||!(amt>0)||amt>100000)return toast('ইউজার ও সঠিক পরিমাণ দিন');u[t]+=amt;addTx('অ্যাডমিন থেকে '+(t==='d'?'জমা':'জেতা')+' ব্যালেন্স',amt,u.phone);save();render();toast(tk(amt)+' যোগ হয়েছে')}
+else if(a==='dosave'){if(!adm)return;const g=i=>val(i).trim(),b=g('cb').split(/\n/).map(x=>x.trim()).filter(Boolean);Object.assign(S.cfg,{notice:g('cn'),banners:b.length?b:S.cfg.banners,wa:g('cw'),tg:g('ct'),tgl:g('cg'),yt:g('cy'),tt:g('ck'),apk:g('ca')});save();toast('সেভ হয়েছে')}
+else if(a==='dologin'){const p=nd(val('lp').trim()),w=val('lw'),u=S.users.find(x=>x.phone===p&&x.pw===w);if(u){S.me=u;S.mp=u.phone;S.in=1;save();render()}else toast('ফোন নম্বর বা পাসওয়ার্ড ভুল')}
+else if(a==='doreg'){const n=val('ln').trim(),p=nd(val('lp').trim()),w=val('lw');if(!n||!/^01\d{9}$/.test(p))return toast('সঠিক নাম ও ১১ ডিজিটের নম্বর দিন');if(w.length<4)return toast('পাসওয়ার্ড কমপক্ষে ৪ অক্ষরের দিন');if(S.users.some(x=>x.phone===p))return toast('এই নম্বরে আগেই অ্যাকাউন্ট আছে');const u={name:n.slice(0,20),phone:p,pw:w,w:0,d:0,at:Date.now()};S.users.push(u);S.me=u;S.mp=p;S.in=1;save();render()}
+else if(a==='win'){const m=M(),i=+el.dataset.i;m.st='done';m.players.forEach((p,j)=>{const h=S.hist.find(x=>x.mid===m.id&&x.u===p.u),u=S.users.find(x=>x.phone===p.u);if(h)h.res=j===i?'win':'loss';if(j===i&&u){u.w+=m.prize;addTx('ম্যাচ #'+bn(m.id)+' প্রাইজ',m.prize,u.phone)}});save();render();toast('বিজয়ী ঘোষণা হয়েছে')}
+else if(a==='dodel'){sheet('');const m=M();if(m.st!=='done')m.players.forEach(p=>{const u=S.users.find(x=>x.phone===p.u);if(u){u.d+=m.entry;addTx('ম্যাচ #'+bn(m.id)+' ফেরত',m.entry,u.phone)}});S.hist=S.hist.filter(h=>h.mid!==m.id);S.matches=S.matches.filter(x=>x.id!==id);save();render()}
+else if(a==='dok'||a==='dno'){const r=S.dep.find(x=>x.id===id);r.st=a==='dok'?'ok':'no';if(a==='dok'){const u=S.users.find(x=>x.phone===r.u);if(u){u.d+=r.amt;addTx('ডিপোজিট '+r.mth,r.amt,u.phone)}}save();render()}
+else if(a==='wok'||a==='wno'){const r=S.wd.find(x=>x.id===id);r.st=a==='wok'?'ok':'no';if(a==='wno'){const u=S.users.find(x=>x.phone===r.u);if(u){u.w+=r.amt;addTx('উইথড্র ফেরত',r.amt,u.phone)}}save();render()}
+else if(a==='lm'){lm=v;render()}
+else if(a==='dologin'){const p=val('lp').trim(),w=val('lw');if(p===S.me.phone&&w===S.me.pw){S.in=1;save();render()}else toast('ফোন নম্বর বা পাসওয়ার্ড ভুল')}
+else if(a==='doreg'){const n=val('ln').trim(),p=val('lp').trim(),w=val('lw');if(!n||!/^01\d{9}$/.test(p))return toast('সঠিক নাম ও ১১ ডিজিটের নম্বর দিন');if(w.length<4)return toast('পাসওয়ার্ড কমপক্ষে ৪ অক্ষরের দিন');S.me={name:n.slice(0,20),phone:p,pw:w,w:0,d:0};S.hist=[];S.tx=[];S.dep=[];S.wd=[];S.matches.forEach(m=>m.players=m.players.filter(q=>!q.mine));S.in=1;save();render()}
+else if(a==='logout'){S.in=0;adm=false;tab='m';view='';save();render()}
+else if(a==='dopin'){if(val('ap')===PIN){sheet('');adm=true;render()}else toast('ভুল পিন')}
+else if(a==='exit'){adm=false;render()}
+else if(a==='mk'){const t=new Date(val('nm')).getTime(),en=+val('ne'),pz=+val('np');if(!val('nm')||isNaN(t)||en<=0||pz<=0)return toast('সময়, এন্ট্রি ফি ও প্রাইজ দিন');if(t<=Date.now())return toast('ভবিষ্যতের সময় দিন');S.matches.push({id:S.nid++,t,entry:en,prize:pz,players:[],code:'',st:'open'});save();render();toast('ম্যাচ যোগ হয়েছে')}
+else if(a==='code'){M().code=val('c'+id).trim();save();render();toast('কোড সেট হয়েছে')}
+else if(a==='win'){const m=M(),i=+el.dataset.i,p=m.players[i];m.st='done';const h=S.hist.find(x=>x.mid===m.id);const mine=m.players.some(q=>q.mine);if(h&&mine){if(p.mine){h.res='win';S.me.w+=m.prize;addTx('ম্যাচ #'+bn(m.id)+' প্রাইজ',m.prize)}else h.res='loss'}save();render();toast('বিজয়ী ঘোষণা হয়েছে')}
+else if(a==='del')sheet('<h3>ম্যাচ ডিলিট করবেন?</h3><p class="mu">জয়েন করা প্লেয়ারের ফি ফেরত যাবে।</p><button class="btn pri" data-a="dodel" data-id="'+id+'">হ্যাঁ, ডিলিট করুন</button>')
+else if(a==='dodel'){sheet('');const m=M();if(m.players.some(p=>p.mine)&&m.st!=='done'){S.me.d+=m.entry;addTx('ম্যাচ #'+bn(m.id)+' ফেরত',m.entry)}S.hist=S.hist.filter(h=>h.mid!==m.id);S.matches=S.matches.filter(x=>x.id!==id);save();render()}
+else if(a==='dok'||a==='dno'){const r=S.dep.find(x=>x.id===id);r.st=a==='dok'?'ok':'no';if(a==='dok'){S.me.d+=r.amt;addTx('ডিপোজিট '+r.mth,r.amt)}save();render()}
+else if(a==='wok'||a==='wno'){const r=S.wd.find(x=>x.id===id);r.st=a==='wok'?'ok':'no';if(a==='wno'){S.me.w+=r.amt;addTx('উইথড্র ফেরত',r.amt)}save();render()}
+});
+let pn=Date.now();setInterval(()=>{let re=0;const nw=Date.now();if(S.matches.some(m=>m.code&&m.t-3e5>pn&&m.t-3e5<=nw))re=1;pn=nw;document.querySelectorAll('[data-t]').forEach(e=>{const c=cd(+e.dataset.t);e.textContent=c||'শুরু হয়েছে';if(!c&&e.dataset.l==='1'){e.dataset.l='0';re=1}});if(re)render()},1000);
+setInterval(()=>{bi=(bi+1)%S.cfg.banners.length;const e=$('#bn');if(e)e.textContent=S.cfg.banners[bi]},4000);
+S=load();render();
+</script>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,collection,onSnapshot,setDoc,getDoc,updateDoc,runTransaction,writeBatch,increment,query,where} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const app=initializeApp({apiKey:"AIzaSyDNtRsIDGXA4U3iNNJakg_QfbJW6_pvJF8",authDomain:"touchline-b4623.firebaseapp.com",projectId:"touchline-b4623",storageBucket:"touchline-b4623.firebasestorage.app",messagingSenderId:"605007595870",appId:"1:605007595870:web:5bc1e07366b8d4136067cf"});
+const auth=getAuth(app),db=getFirestore(app);
+const EM=p=>p.includes('@')?p.trim():p+'@touchline.bd';
+let uns=[],isAd=false;
+const stop=()=>{uns.forEach(f=>f());uns=[]};
+function prep(){const me=S.me;if(me&&me.uid){const u=me.phone,id=me.uid;
+S.hist=S.matches.filter(m=>m.uids.includes(id)).map(m=>({u,mid:m.id,t:m.t,entry:m.entry,res:m.st==='done'?(m.winner===id?'win':'loss'):'run'}));
+S.tx=[...S.dep.filter(r=>r.st==='ok').map(r=>({u,d:'\u09a1\u09bf\u09aa\u09cb\u099c\u09bf\u099f '+r.mth,a:r.amt})),...S.wd.filter(r=>r.st!=='no').map(r=>({u,d:'\u0989\u0987\u09a5\u09a1\u09cd\u09b0 \u0985\u09a8\u09c1\u09b0\u09cb\u09a7',a:-r.amt})),...S.hist.map(h=>({u,d:'\u09ae\u09cd\u09af\u09be\u099a #'+bn(h.mid)+' \u098f\u09a8\u09cd\u099f\u09cd\u09b0\u09bf',a:-h.entry})),...S.hist.filter(h=>h.res==='win').map(h=>({u,d:'\u09ae\u09cd\u09af\u09be\u099a #'+bn(h.mid)+' \u09aa\u09cd\u09b0\u09be\u0987\u099c',a:(S.matches.find(m=>m.id===h.mid)||{}).prize||0}))]}
+S.matches.forEach(m=>{m.code=S.codes[m.id]||''})}
+const R=()=>{const a=document.activeElement;if(a&&a.closest&&a.closest('#app')&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))return;prep();render()};
+const mapReq=s=>s.docs.map(d=>{const x=d.data();return{...x,id:d.id,uid:x.u,u:x.ph}});
+onAuthStateChanged(auth,u=>{stop();S.matches=[];S.dep=[];S.wd=[];S.users=[];S.codes={};
+if(!u){S.in=0;S.me=null;adm=false;R();return}
+isAd=!u.email.endsWith('@touchline.bd');
+const L=(q,f)=>uns.push(onSnapshot(q,f,e=>console.log(e.code)));
+L(doc(db,'settings','app'),s=>{if(s.exists())Object.assign(S.cfg,s.data());R()});
+L(collection(db,'matches'),s=>{S.matches=s.docs.map(d=>({id:d.id,...d.data()}));fetchCodes();R()});
+if(isAd){adm=true;S.in=1;S.me={uid:u.uid,phone:u.email,name:'\u0985\u09cd\u09af\u09be\u09a1\u09ae\u09bf\u09a8',w:0,d:0};
+L(collection(db,'users'),s=>{S.users=s.docs.map(d=>({uid:d.id,...d.data()}));R()});
+L(collection(db,'codes'),s=>{S.codes={};s.docs.forEach(d=>{S.codes[d.id]=d.data().code});R()});
+L(collection(db,'deposits'),s=>{S.dep=mapReq(s);R()});
+L(collection(db,'withdrawals'),s=>{S.wd=mapReq(s);R()})}
+else{adm=false;
+L(doc(db,'users',u.uid),s=>{if(s.exists()){S.me={uid:u.uid,...s.data()};S.in=1}else S.in=0;R()});
+L(query(collection(db,'deposits'),where('u','==',u.uid)),s=>{S.dep=mapReq(s);R()});
+L(query(collection(db,'withdrawals'),where('u','==',u.uid)),s=>{S.wd=mapReq(s);R()})}});
+async function fetchCodes(){if(isAd||!S.me)return;const n=Date.now();for(const m of S.matches){if(m.uids.includes(S.me.uid)&&n>=m.t-3e5&&!S.codes[m.id]){try{const s=await getDoc(doc(db,'codes',m.id));if(s.exists()){S.codes[m.id]=s.data().code;R()}}catch(e){}}}}
+setInterval(fetchCodes,10000);
+const ER=e=>{const c=String(e.code||e.message);return c==='bal'?'\u09ac\u09cd\u09af\u09be\u09b2\u09c7\u09a8\u09cd\u09b8 \u0995\u09ae':c==='full'?'\u098f\u0987 \u09ae\u09cd\u09af\u09be\u099a\u09c7 \u0986\u09b0 \u099c\u09af\u09bc\u09c7\u09a8 \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7 \u09a8\u09be':/email-already/.test(c)?'\u098f\u0987 \u09a8\u09ae\u09cd\u09ac\u09b0\u09c7 \u0986\u0997\u09c7\u0987 \u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f \u0986\u099b\u09c7':/invalid-credential|wrong-password|user-not-found|invalid-email/.test(c)?'\u09a8\u09ae\u09cd\u09ac\u09b0 \u09ac\u09be \u09aa\u09be\u09b8\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09a1 \u09ad\u09c1\u09b2':/permission/.test(c)?'\u0985\u09a8\u09c1\u09ae\u09a4\u09bf \u09a8\u09c7\u0987':'\u09b8\u09ae\u09b8\u09cd\u09af\u09be \u09b9\u09af\u09bc\u09c7\u099b\u09c7, \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09c1\u09a8'};
+const H=new Set(['logo','dopin','dologin','doreg','logout','exit','dojoin','doadd2','dowd2','dorn','mk','code','win','dodel','dok','dno','wok','wno','give','dosave']);
+window.FB={act(a,el){if(!H.has(a))return false;run(a,el).catch(e=>{console.log(e);toast(ER(e))});return true}};
+const AD=()=>{if(!isAd)throw new Error('permission')};
+async function run(a,el){const id=el.dataset.id,val=i=>(document.getElementById(i)||{}).value||'',me=S.me,m=S.matches.find(x=>x.id===id);
+switch(a){
+case 'logo':case 'dopin':return;
+case 'logout':case 'exit':return signOut(auth);
+case 'dologin':{const p=nd(val('lp').trim()),w=val('lw');if(!p||!w)return toast('\u09a8\u09ae\u09cd\u09ac\u09b0 \u0993 \u09aa\u09be\u09b8\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09a1 \u09a6\u09bf\u09a8');await signInWithEmailAndPassword(auth,EM(p),w);return}
+case 'doreg':{const n=val('ln').trim(),p=nd(val('lp').trim()),w=val('lw');if(!n||!/^01\d{9}$/.test(p))return toast('\u09b8\u09a0\u09bf\u0995 \u09a8\u09be\u09ae \u0993 \u09e7\u09e7 \u09a1\u09bf\u099c\u09bf\u099f\u09c7\u09b0 \u09a8\u09ae\u09cd\u09ac\u09b0 \u09a6\u09bf\u09a8');if(w.length<6)return toast('\u09aa\u09be\u09b8\u0993\u09af\u09bc\u09be\u09b0\u09cd\u09a1 \u0995\u09ae\u09aa\u0995\u09cd\u09b7\u09c7 \u09ec \u0985\u0995\u09cd\u09b7\u09b0\u09c7\u09b0 \u09a6\u09bf\u09a8');const c=await createUserWithEmailAndPassword(auth,EM(p),w);await setDoc(doc(db,'users',c.user.uid),{name:n.slice(0,20),phone:p,w:0,d:0,at:Date.now()});return}
+case 'dorn':{const n=val('rn').trim();if(!n)return;await updateDoc(doc(db,'users',me.uid),{name:n.slice(0,20)});sheet('');return}
+case 'dojoin':{const n=val('jn').trim(),r=+val('jr');if(!n||!r)return toast('\u09a8\u09be\u09ae \u0993 \u09b0\u09c7\u099f\u09bf\u0982 \u09a6\u09bf\u09a8');
+await runTransaction(db,async t=>{const mr=doc(db,'matches',id),ur=doc(db,'users',me.uid),mm=(await t.get(mr)).data(),u=(await t.get(ur)).data();
+if(!mm||mm.st!=='open'||Date.now()>=mm.t||mm.uids.length>=2||mm.uids.includes(me.uid))throw new Error('full');
+if(u.d+u.w<mm.entry)throw new Error('bal');const x=Math.min(u.d,mm.entry);
+t.update(ur,{d:u.d-x,w:u.w-(mm.entry-x)});t.update(mr,{uids:[...mm.uids,me.uid],players:[...mm.players,{u:me.uid,n,r}]})});
+sheet('');toast('\u099c\u09af\u09bc\u09c7\u09a8 \u09b8\u09ae\u09cd\u09aa\u09a8\u09cd\u09a8');return}
+case 'doadd2':{const amt=+val('aa'),t=val('at').replace(/\s/g,'').toUpperCase();if(!(amt>=10&&amt<=500))return toast('\u09f3\u09e7\u09e6 \u09a5\u09c7\u0995\u09c7 \u09f3\u09eb\u09e6\u09e6 \u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4 \u09af\u09cb\u0997 \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7');if(!/^[A-Z0-9]{8,12}$/.test(t))return toast('\u09b8\u09a0\u09bf\u0995 \u099f\u09cd\u09b0\u09be\u09a8\u099c\u09c7\u0995\u09b6\u09a8 \u0986\u0987\u09a1\u09bf \u09a6\u09bf\u09a8 (\u09ee-\u09e7\u09e8 \u0985\u0995\u09cd\u09b7\u09b0)');
+try{await setDoc(doc(db,'deposits',t),{u:me.uid,ph:me.phone,nm:me.name,amt,mth:PN[pm],trx:t,st:'p',at:Date.now()})}catch(e){return toast('\u098f\u0987 \u099f\u09cd\u09b0\u09be\u09a8\u099c\u09c7\u0995\u09b6\u09a8 \u0986\u0987\u09a1\u09bf \u0986\u0997\u09c7\u0987 \u09a6\u09c7\u0993\u09af\u09bc\u09be \u09b9\u09af\u09bc\u09c7\u099b\u09c7')}
+sheet('');toast('\u09b0\u09bf\u0995\u09cb\u09af\u09bc\u09c7\u09b8\u09cd\u099f \u09aa\u09be\u09a0\u09be\u09a8\u09cb \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'dowd2':{if(!wopen())return toast('\u0989\u0987\u09a5\u09a1\u09cd\u09b0 \u098f\u0996\u09a8 \u09ac\u09a8\u09cd\u09a7, \u09b8\u0995\u09be\u09b2 \u09e7\u09e6\u099f\u09be\u09af\u09bc \u099a\u09be\u09b2\u09c1 \u09b9\u09ac\u09c7');const amt=+val('wa'),no=nd(val('wn').trim()),td=bdd(Date.now());
+if(!/^01\d{9}$/.test(no))return toast('\u09b8\u09a0\u09bf\u0995 \u09e7\u09e7 \u09a1\u09bf\u099c\u09bf\u099f\u09c7\u09b0 \u09a8\u09ae\u09cd\u09ac\u09b0 \u09a6\u09bf\u09a8');if(!(amt>=WMIN&&amt<=WMAX))return toast('\u09f3\u09e7\u09e6\u09e6 \u09a5\u09c7\u0995\u09c7 \u09f3\u09eb\u09e6\u09e6 \u09aa\u09b0\u09cd\u09af\u09a8\u09cd\u09a4 \u0989\u09a4\u09cd\u09a4\u09cb\u09b2\u09a8 \u0995\u09b0\u09be \u09af\u09be\u09ac\u09c7');
+if(S.wd.filter(r=>r.st!=='no'&&bdd(r.at)===td).length>=WDAY)return toast('\u0986\u099c\u0995\u09c7\u09b0 \u0989\u0987\u09a5\u09a1\u09cd\u09b0 \u09b8\u09c0\u09ae\u09be \u09b6\u09c7\u09b7');
+const f=fee(amt);await runTransaction(db,async t=>{const ur=doc(db,'users',me.uid),u=(await t.get(ur)).data();if(u.w<amt)throw new Error('bal');t.update(ur,{w:u.w-amt});
+t.set(doc(db,'withdrawals',Date.now()+'_'+me.uid.slice(0,6)),{u:me.uid,ph:me.phone,nm:me.name,at:Date.now(),amt,fee:f,net:amt-f,mth:PN[pm],typ:pt==='p'?'Personal':'Agent',no,st:'p'})});
+sheet('');toast('\u0985\u09a8\u09c1\u09b0\u09cb\u09a7 \u09aa\u09be\u09a0\u09be\u09a8\u09cb \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'mk':{AD();const t=new Date(val('nm')).getTime(),en=+val('ne'),pz=+val('np');if(!val('nm')||isNaN(t)||en<=0||pz<=0)return toast('\u09b8\u09ae\u09af\u09bc, \u098f\u09a8\u09cd\u099f\u09cd\u09b0\u09bf \u09ab\u09bf \u0993 \u09aa\u09cd\u09b0\u09be\u0987\u099c \u09a6\u09bf\u09a8');if(t<=Date.now())return toast('\u09ad\u09ac\u09bf\u09b7\u09cd\u09af\u09a4\u09c7\u09b0 \u09b8\u09ae\u09af\u09bc \u09a6\u09bf\u09a8');
+await runTransaction(db,async x=>{const cr=doc(db,'settings','counter'),s=await x.get(cr),k=(s.exists()?s.data().n:0)+1;x.set(cr,{n:k});x.set(doc(db,'matches',String(k)),{t,entry:en,prize:pz,uids:[],players:[],st:'open',no:k})});toast('\u09ae\u09cd\u09af\u09be\u099a \u09af\u09cb\u0997 \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'code':{AD();await setDoc(doc(db,'codes',id),{code:val('c'+id).trim()});toast('\u0995\u09cb\u09a1 \u09b8\u09c7\u099f \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'win':{AD();if(!m||m.st==='done')return;const p=m.players[+el.dataset.i],b=writeBatch(db);b.update(doc(db,'matches',id),{st:'done',winner:p.u||''});if(p.u)b.update(doc(db,'users',p.u),{w:increment(m.prize)});await b.commit();toast('\u09ac\u09bf\u099c\u09af\u09bc\u09c0 \u0998\u09cb\u09b7\u09a3\u09be \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'dodel':{AD();sheet('');if(!m)return;const b=writeBatch(db);if(m.st!=='done')m.players.forEach(p=>{if(p.u)b.update(doc(db,'users',p.u),{d:increment(m.entry)})});b.delete(doc(db,'matches',id));b.delete(doc(db,'codes',id));await b.commit();return}
+case 'dok':case 'dno':{AD();const r=S.dep.find(x=>x.id===id);if(!r||r.st!=='p')return;const b=writeBatch(db);b.update(doc(db,'deposits',id),{st:a==='dok'?'ok':'no'});if(a==='dok')b.update(doc(db,'users',r.uid),{d:increment(r.amt)});await b.commit();return}
+case 'wok':case 'wno':{AD();const r=S.wd.find(x=>x.id===id);if(!r||r.st!=='p')return;const b=writeBatch(db);b.update(doc(db,'withdrawals',id),{st:a==='wok'?'ok':'no'});if(a==='wno')b.update(doc(db,'users',r.uid),{w:increment(r.amt)});await b.commit();return}
+case 'give':{AD();const p=nd(val('gu').trim()),amt=+val('ga'),t=val('gt'),u=S.users.find(x=>x.phone===p);if(!u||!(amt>0)||amt>100000)return toast('\u0987\u0989\u099c\u09be\u09b0 \u0993 \u09b8\u09a0\u09bf\u0995 \u09aa\u09b0\u09bf\u09ae\u09be\u09a3 \u09a6\u09bf\u09a8');await updateDoc(doc(db,'users',u.uid),{[t]:increment(amt)});toast(tk(amt)+' \u09af\u09cb\u0997 \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+case 'dosave':{AD();const g=i=>val(i).trim(),b=g('cb').split(/\n/).map(x=>x.trim()).filter(Boolean);const c={notice:g('cn'),banners:b.length?b:S.cfg.banners,wa:g('cw'),tg:g('ct'),tgl:g('cg'),yt:g('cy'),tt:g('ck'),apk:g('ca')};await setDoc(doc(db,'settings','app'),c);toast('\u09b8\u09c7\u09ad \u09b9\u09af\u09bc\u09c7\u099b\u09c7');return}
+}}
+</script><script>
+if (matchMedia('(display-mode: standalone)').matches || navigator.standalone) {
+  const hide = () => document.querySelectorAll('button,a').forEach(b => {
+    if (b.textContent.includes('অ্যাপ ডাউনলোড করুন')) b.style.display = 'none';
+  });
+  hide();
+  new MutationObserver(hide).observe(document.body, {childList: true, subtree: true});
+}
+</script>
+</body>
+</html>
